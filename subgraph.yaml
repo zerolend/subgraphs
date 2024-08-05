@@ -1,0 +1,50 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Staking_omnichain
+    network: linea
+    source:
+      address: "0xf374229a18ff691406f99CCBD93e8a3f16B68888" #proxy add
+      abi: Staking
+      startBlock: 4305919
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - TokenBalance
+      abis:
+        - name: Staking
+          file: ./abis/Staking.json
+      eventHandlers:
+        # - event: Transfer(indexed address,indexed address,uint256)
+        #   handler: handleTransfer_omni
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: handleDelegateVotesChanged
+      file: ./src/staking.ts #impl abi
+  - kind: ethereum
+    name: Staking_omnichain_lp
+    network: linea
+    source:
+      address: "0x0374ae8e866723ADAE4A62DcE376129F292369b4"
+      abi: Staking
+      startBlock: 5192951
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - TokenBalance
+      abis:
+        - name: Staking
+          file: ./abis/Staking.json
+      eventHandlers:
+        # - event: Transfer(indexed address,indexed address,uint256)
+        #   handler: handleTransfer_omnichain_lp
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: handleDelegateVotesChanged_lp
+      file: ./src/staking.ts

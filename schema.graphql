@@ -1,0 +1,5 @@
+type TokenBalance @entity {
+  id: ID!
+  balance_omni: BigInt!
+  balance_omni_lp: BigInt!
+}
