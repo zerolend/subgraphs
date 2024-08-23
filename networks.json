@@ -1,8 +1,8 @@
 {
   "linea": {
-    "OmnichainStaking": {
-      "address": "0x8EC583Dc3843291E5018119683d81EF3D78872C4",
-      "startBlock": 4305914
+    "PoolFactory": {
+      "address": "0xf24A6d44e69949837111FF6f4339462534124679",
+      "startBlock": 6486294
     }
   }
 }

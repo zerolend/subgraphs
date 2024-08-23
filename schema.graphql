@@ -1,5 +1,42 @@
-type TokenBalance @entity {
+type Pool @entity {
   id: ID!
-  balance_omni: BigInt!
-  balance_omni_lp: BigInt!
+  address: Bytes!
+  supplies: [Supply!] @derivedFrom(field: "pool")
+  borrows: [Borrow!] @derivedFrom(field: "pool")
+  repays: [Repay!] @derivedFrom(field: "pool")
+  withdraws: [Withdraw!] @derivedFrom(field: "pool")
+  createdAtBlock: BigInt!
+  createdAtTimestamp: BigInt!
+}
+
+type Supply @entity {
+  id: ID!
+  pool: Pool!
+  user: Bytes!
+  amount: BigInt!
+  timestamp: BigInt!
+}
+
+type Borrow @entity {
+  id: ID!
+  pool: Pool!
+  user: Bytes!
+  amount: BigInt!
+  timestamp: BigInt!
+}
+
+type Repay @entity {
+  id: ID!
+  pool: Pool!
+  user: Bytes!
+  amount: BigInt!
+  timestamp: BigInt!
+}
+
+type Withdraw @entity {
+  id: ID!
+  pool: Pool!
+  user: Bytes!
+  amount: BigInt!
+  timestamp: BigInt!
 }
